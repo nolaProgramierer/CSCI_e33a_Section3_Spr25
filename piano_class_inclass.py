@@ -1,3 +1,4 @@
+
 class Piano():
     
     inventory = [] # Stores all instances of the class
@@ -13,39 +14,66 @@ class Piano():
     # Class instance methods (methods on class instances)
     # ---------------------------------------------------
     # Print detail of a piano class instance
-    
+    def print_piano_details(self):
+        print(f"{self.brand} - ${self.price:,.0f}")
+        print(f"Features: {' ,'.join(self.features)}")
 
     # Convert the price of a piano to euros 
-    
+    def convert_price_to_euros(self, rate):
+        return (self.price * rate)
     
     # Add a feature to a piano instance
-    
+    def add_feature(self, feature):
+        if feature in self.features:
+            print(f"This {feature} already exists for this {self.brand}")
+        else:
+            self.features.append(feature)
+            print(f"{feature} added to this piano's features")
 
     # Remove a feature of a piano instance
-    
+    def remove_features(self, feature):
+        if feature in self.features:
+            self.features.remove(feature)
+            print(f"{feature} has been removed from {self.brand}")
+        else:
+            print(f"This {self.brand} does not have this feature to remove.")
 
     # Update the price of a piano instance
-    
+    def update_price(self, new_price):
+        self.price = new_price
+        print(f"The price of {self.brand} has been updated to ${self.price:,.0f}")
 
 
     # Class methods, methods for the entire class
     # -------------------------------------------
     # Return a list of all class instances
-    
-    
+    @classmethod
+    def get_inventory(cls):
+        return cls.inventory
     
     # Find the most expensive piano of the class
-   
-    
+    @classmethod
+    def get_most_expensive_piano(cls):
+        if not cls.inventory:
+            print("No pianos in inventory.")
+            return None
+        return max(cls.inventory, key=lambda piano: piano.price, default=None)
 
     # Remove a piano from the class   
-    
-    
+    @classmethod
+    def remove_piano(cls, piano):
+        if piano in cls.inventory:
+            cls.inventory.remove(piano)
+            print(f"{piano.brand} piano removed from inventory.")
+        else:
+            print(f"Piano not found in inventory.")
 
     # Find a piano by a feature
+    @classmethod
+    def find_piano_by_feature(cls, feature):
+        return [piano for piano in cls.inventory if feature in piano.features]
+
     
-    
-       
 # Subclasses of the Piano class, inheriting methods and variables
 # ---------------------------------------------------------------
 class GrandPiano(Piano):
@@ -57,6 +85,14 @@ class GrandPiano(Piano):
         self.size = size
         GrandPiano.inventory.append(self)
 
+    #Overriding a method of the super class (Polymorphism)
+    def print_piano_details(self):
+        super().print_piano_details()
+        print(f"Price: {self.price} - Size: {self.size}")
+
+    def play_sound(self):
+        print("Playing a beautiful, rich, singing grand piano sound")
+
 
 class UprightPiano(Piano):
     inventory = [] # Separate inventory for uprightdpiano
@@ -65,6 +101,10 @@ class UprightPiano(Piano):
         super().__init__(brand, price, features=features)
         self.height = height
         UprightPiano.inventory.append(self)
+
+    def play_sound(self):
+        print("Playing a bright, somewhat thin, but pleasing upright sound!")
+
 
 # --------------------------------------------------------
 # Instances of the Piano class and its subclasses
@@ -82,6 +122,7 @@ g3 = GrandPiano("Yamaha", 45000, "6ft", features=["Player System"])
 u1 = UprightPiano("Baldwin", 3500, "48 inches", features=["Silent Mode"])
 u2 = UprightPiano("Kawai", 4000, "50 inches", features=["Practice Pedal"])
 u3 = UprightPiano("Steinway", 8500, "52 inches", features=["Handcrafted Wood"])
+
 
 # (The extra 'print()' statements are only for more readable terminal output)
 print()
@@ -129,6 +170,9 @@ print("10)")
 
 print("11)")
 # Find pianos that are Concert Grade
+
+
+
 
 
 
