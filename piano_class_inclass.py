@@ -1,4 +1,5 @@
 
+
 class Piano():
     
     inventory = [] # Stores all instances of the class
@@ -8,7 +9,13 @@ class Piano():
         self.price = price
         self.keys = keys
         self.pedals = pedals
-        self.features = features if features is not None else []
+
+        if features is None:
+            self.features = []
+        elif isinstance(features, list):
+            self.features = features
+        else: raise TypeError('features must be a list')
+
         Piano.inventory.append(self) # Append instance to inventory on intialization
 
     # Class instance methods (methods on class instances)
@@ -170,6 +177,10 @@ print("10)")
 
 print("11)")
 # Find pianos that are Concert Grade
+
+
+
+
 
 
 
