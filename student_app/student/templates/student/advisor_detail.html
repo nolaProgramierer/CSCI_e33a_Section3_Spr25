@@ -1,0 +1,45 @@
+{% extends "student/layout.html" %}
+
+{% block body %}
+<h2>Advisor detail</h2>
+<div id="edit-advisor-btn">
+    <a href="{% url 'edit_advisor' id=advisor.id %}">Edit Advisor</a>
+</div>
+<div id="advisor-container">
+    <div id="advisor-detail-container">
+        <div>
+            <div>
+                <b>Advisor name</b>: {{advisor.lname}}, {{advisor.fname}}
+            </div>
+            <div>
+                <b>Advisor id</b>: {{advisor.id}}
+            </div>
+            <div>
+                <b>Number of advisees</b>: {{ advisor.advisees.count }}
+            </div>
+        </div>
+        <div>
+            <h4>Student advisees</h4>
+            {% if advisor.advisees.count != 0 %}  
+                <ul>
+                    {% for advisee in advisor.advisees.all %}
+                    <li>
+                        {{ advisee.lname }}, {{advisee.fname }}
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div>
+            {% else %}
+            <div>
+                There are no student advisees
+            </div>
+                    
+            {% endif %} 
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

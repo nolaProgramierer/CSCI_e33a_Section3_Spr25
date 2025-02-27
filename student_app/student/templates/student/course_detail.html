@@ -1,0 +1,44 @@
+{% extends "student/layout.html" %}
+
+{% block body %}
+
+    <h2>Course detail</h2>
+
+    <div id="course-detail-container">
+        <div>
+            <div>
+                <a href="{% url 'edit_course' id=course.id %}">Edit course</a>
+            </div>
+            <div>
+                <a href="{% url 'remove_course' id=course.id %}">Remove course</a>
+            </div>
+        </div>
+       <div id="course-detail">
+            <div>
+                <div>
+                    <b>Course department</b>: {{course.course_dept}} {{course.course_num}}
+                </div>
+                <div>
+                    <b>Course subject</b>: {{course.subject}}
+                </div>
+                <div class="course-description">
+                    <b>Course description</b>:  {{course.description}}
+                </div>
+            </div>
+            <div>
+                <h5>Registered students</h5>
+                {% if course.students.count != 0 %}
+                    {% for student in course.students.all %}
+                    <div>
+                        {{ student.lname }}, {{ student.fname }}
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    There are no students registered for this course
+                {% endif %}
+            </div>
+       </div>
+    </div>
+    
+
+{% endblock %}

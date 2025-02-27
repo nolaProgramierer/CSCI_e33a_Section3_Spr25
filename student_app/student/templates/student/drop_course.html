@@ -1,0 +1,12 @@
+{% extends "student/layout.html" %}
+
+{% block body %}
+
+    <h4>Drop a course for {{ student.fname }} {{student.lname }}</h4>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Drop Course</button>
+    </form>
+
+{% endblock %}

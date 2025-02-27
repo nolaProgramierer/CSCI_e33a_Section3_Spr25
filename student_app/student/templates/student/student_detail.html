@@ -1,0 +1,31 @@
+{% extends "student/layout.html" %}
+
+{% block body %}
+
+{% include "student/partials/messages.html" %}
+
+   <h2>Student: {{ student.fname }} {{ student.lname }}</h2>
+   <h4>Registered for these courses:</h4>
+   <ul>
+      {% for course in student.courses.all %}
+      <li>{{ course }}</a></li>
+      {% empty %}
+      Not yet registered
+      {% endfor %}
+   </ul>
+
+   <div>
+      <a href="{% url 'add_student_to_course' id=student.id %}">Add {{student.fname}} a to course</a>
+   </div>
+   <div>
+      <a  href="{% url 'deactivate_student' id=student.id %}">Deactivate a student</a>
+   </div>
+   <div>
+      <a  href="{% url 'edit_student' id=student.id %}">Edit a student</a>
+   </div>
+   <div>
+      <a  href="{% url 'drop_course' id=student.id %}">Drop a course</a>
+   </div>
+
+   
+{% endblock %}

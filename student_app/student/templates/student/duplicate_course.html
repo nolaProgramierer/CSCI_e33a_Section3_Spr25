@@ -1,0 +1,9 @@
+{% extends "student/layout.html" %}
+
+{% block body %}
+
+    <h2>{{student.fname}} {{student.lname}}</h2>
+    <h3>{{ message }}</h3>
+    <a href="{% url 'student_detail' student.id %}">Back to student detail page</a>
+    
+{% endblock %}

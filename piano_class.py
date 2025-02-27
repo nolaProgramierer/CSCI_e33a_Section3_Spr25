@@ -1,5 +1,4 @@
 
-
 class Piano():
     
     inventory = [] # Stores all instances of the class
@@ -135,57 +134,64 @@ u3 = UprightPiano("Steinway", 8500, "52 inches", features=["Handcrafted Wood"])
 print()
 print("1)")
 # Show the details of the Steinway grand piano
-
+p1.print_piano_details()
+print()
 
 print("2)")
 # Show the details of the Steinway grand piano
-
+g2.print_piano_details()
+print()
 
 print("3)")
 # Play the Yamaha grand piano
-
+g3.play_sound()
+print()
 
 print("4)")
 # Play the Badlwin upright
-
+u1.play_sound()
+print()
 
 print("5)")
 # Convert Steinway grand price to euros
 # (notice that the method was defined in the super class)
-
+euro_price = g2.convert_price_to_euros(1.09)
+print(f"The price in euros for the {g2.brand} is €{euro_price:,.0f}")
+print()
 
 print("6)")
 # Add a feature to the Kawai upright
-
+u2.add_feature("Practice Pedal")
+print()
 
 print("7)")
 # Update price for Baldwin upright
-
+u1.update_price(3750)
+print()
 
 print("8)")
 # Return all pianos in inventory
-
+for piano in Piano.get_inventory():
+    print(f"{piano.brand} - ${piano.price:,.0f}")
+print()
 
 print("9)")
 # Return the most expensive piano
-
+expensive_piano = Piano.get_most_expensive_piano()
+print(f"{expensive_piano.brand} is the most expensive piano in inventory.")
+print()
 
 print("10)")
 # Return all grand pianos
 # (notice that a method defined in the superclass is available in the subclass)
-
+for grand in GrandPiano.get_inventory():
+    print(f"{grand.brand} - ${grand.price:,.0f}")
+print()
 
 print("11)")
 # Find pianos that are Concert Grade
-
-
-
-
-
-
-
-
-
-
+concert_grade_pianos = Piano.find_piano_by_feature("Concert Grade")
+for piano in concert_grade_pianos:
+    print(f"{piano.brand} - ${piano.price:,.0f} - Features: {', '.join(piano.features)}")
 
 

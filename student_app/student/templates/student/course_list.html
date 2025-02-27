@@ -1,0 +1,20 @@
+{% extends "student/layout.html" %}
+
+{% block body %}
+
+    <a href="{% url 'new_course' %}">Add a course</a>
+
+    <div id="course-list-container">
+        {% for course in courses %}    
+            <div>
+                <a href="{% url 'course_detail' id=course.id %}">{{course.dept}} {{course.course_num}}</a>
+                <div>
+                    Number of students registered:  {{ course.students.count }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+{% endblock %}
